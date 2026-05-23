@@ -1,19 +1,19 @@
-A simple steganography pipeline that encrypts text with AES, wraps the AES key with RSA, and hides the ciphertext inside a PNG image using least significant bit (LSB) embedding.
+Steganographic pipeline that encrypts text with AES, wraps the AES key with RSA, and hides ciphertext inside a PNG using least significant bit (LSB) embedding.
 
-Highlights
+**Highlights**
 
 - End-to-end pipeline: plaintext -> AES encryption -> RSA key wrapping -> LSB steganography
-- Lossless PNG embedding and exact recovery of hidden ciphertext
-- Clean command-line workflow for encrypting and decrypting messages
+- Lossless PNG embedding with exact recovery of hidden ciphertext
+- Simple, repeatable CLI workflow for encryption and decryption
 
-Tech Stack
+**Tech Stack**
 
 - Python 3
 - cryptography (AES-CBC, PBKDF2, PKCS7)
 - rsa (public/private key encryption)
 - OpenCV (pixel-level image manipulation)
 
-How It Works
+**How It Works**
 
 1. Message input: write your plaintext message in input.txt.
 2. Encryption and embedding: run encryptor.py, which:
@@ -26,11 +26,19 @@ How It Works
    - Recovers the AES key via RSA decryption.
    - Decrypts the ciphertext into output.txt.
 
-Local Usage
+**Local Usage**
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
 
 Encrypt a message:
 
+```bash
 python encryptor.py
+```
 
 Outputs:
 - output.png (image with hidden ciphertext)
@@ -41,7 +49,9 @@ Outputs:
 
 Decrypt a message:
 
+```bash
 python decryptor.py
+```
 
 Requires:
 - output.png
@@ -51,19 +61,28 @@ Requires:
 Outputs:
 - output.txt (decrypted plaintext)
 
-Example
+**Example**
 
 1) input.txt
+
+```
 This is the hidden message, Hi how are you?
+```
 
 2) Run
+
+```bash
 python encryptor.py
 python decryptor.py
+```
 
 3) output.txt
-This is the hidden message, Hi how are you?
 
-Notes
+```
+This is the hidden message, Hi how are you?
+```
+
+**Notes**
 
 - Use a lossless PNG for input.png so the LSBs remain intact.
 - The RSA key pair is only generated if missing; existing keys are preserved.
