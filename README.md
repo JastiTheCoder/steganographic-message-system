@@ -1,19 +1,21 @@
+#Steganographic Message System
+
 Steganographic pipeline that encrypts text with AES, wraps the AES key with RSA, and hides ciphertext inside a PNG using least significant bit (LSB) embedding.
 
-**Highlights**
+##Highlights
 
 - End-to-end pipeline: plaintext -> AES encryption -> RSA key wrapping -> LSB steganography
 - Lossless PNG embedding with exact recovery of hidden ciphertext
 - Simple, repeatable CLI workflow for encryption and decryption
 
-**Tech Stack**
+##Tech Stack
 
 - Python 3
 - cryptography (AES-CBC, PBKDF2, PKCS7)
 - rsa (public/private key encryption)
 - OpenCV (pixel-level image manipulation)
 
-**How It Works**
+##How It Works
 
 1. Message input: write your plaintext message in input.txt.
 2. Encryption and embedding: run encryptor.py, which:
@@ -26,7 +28,7 @@ Steganographic pipeline that encrypts text with AES, wraps the AES key with RSA,
    - Recovers the AES key via RSA decryption.
    - Decrypts the ciphertext into output.txt.
 
-**Local Usage**
+##Local Usage
 
 Install dependencies:
 
@@ -34,34 +36,34 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Encrypt a message:
+###Encrypt a message:
 
 ```bash
 python encryptor.py
 ```
 
-Outputs:
+###Outputs:
 - output.png (image with hidden ciphertext)
 - content/encrypted_output.txt
 - content/binary_output.bin
 - content/size.txt
 - key/pki_encrypted.txt
 
-Decrypt a message:
+###Decrypt a message:
 
 ```bash
 python decryptor.py
 ```
 
-Requires:
+###Requires:
 - output.png
 - key/private.pem
 - key/pki_encrypted.txt
 
-Outputs:
+###Outputs:
 - output.txt (decrypted plaintext)
 
-**Example**
+##Example
 
 1) input.txt
 
