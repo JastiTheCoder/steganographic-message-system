@@ -117,15 +117,9 @@ def decrypt_file(input_file, output_file):
         # Read the ciphertext
         ciphertext = f.read()
 
-    # Read the encryption key from the key.txt file
-    '''
-    with open("key/pki_decrypted.txt", 'rb') as key_file    w 4y1:
+    # Read the AES key recovered via RSA decryption
+    with open("key/pki_decrypted.txt", 'rb') as key_file:
         key = key_file.read()
-        print(key)
-    '''
-
-    with open("key/key.txt", 'rb') as file1:
-        key = file1.read()
         print(key)
 
 

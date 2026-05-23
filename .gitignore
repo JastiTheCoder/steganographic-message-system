@@ -1,0 +1,20 @@
+# Virtual environments
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Generated outputs
+output.png
+output.txt
+content/*.bin
+content/encrypted_output.txt
+content/encrypted_text_output.txt
+content/size.txt
+content/extracted_data.bin
+
+# Keys and secrets
+key/*.pem
+key/*.txt

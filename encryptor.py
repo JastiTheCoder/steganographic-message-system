@@ -11,13 +11,17 @@ public and private key generator
 public key and private key generator
 """
 
+import os
 import rsa
 
-public_key, private_key = rsa.newkeys(1024)
-with open("key/public.pem","wb") as f:
-    f.write(public_key.save_pkcs1("PEM"))
-with open("key/private.pem","wb") as f:
-    f.write(private_key.save_pkcs1("PEM"))
+def ensure_rsa_keys(public_key_path, private_key_path):
+    # Generate keys only if missing to avoid overwriting existing key pairs.
+    if not os.path.exists(public_key_path) or not os.path.exists(private_key_path):
+        public_key, private_key = rsa.newkeys(1024)
+        with open(public_key_path, "wb") as f:
+            f.write(public_key.save_pkcs1("PEM"))
+        with open(private_key_path, "wb") as f:
+            f.write(private_key.save_pkcs1("PEM"))
 
 """encrypter"""
 
@@ -116,6 +120,7 @@ input_file_path = "input.txt"
 output_file_path = "content/encrypted_output.txt"
 
 # Call the function to encrypt the contents of the input file
+ensure_rsa_keys("key/public.pem", "key/private.pem")
 encrypt_file(input_file_path, output_file_path)
 pki_encryptor()
 
